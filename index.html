@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Data to Webhook</title>
+</head>
+<body>
+    <button onclick="sendDataToWebhook()"> Send Data </button>
+
+    <script>
+        function sendDataToWebhook() {
+            // Replace 'YOUR_WEBHOOK_URL' with your actual webhook URL
+            const webhookUrl = 'https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjUwNTZmMDYzMzA0MzQ1MjZjNTUzNjUxMzUi_pc'; 
+
+            // Data to send (replace with your own JSON data)
+            const dataToSend = {
+                key1: 'value1',
+                key2: 'value2'
+            };
+
+            // Send a POST request to the webhook URL
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSend),
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Webhook sent successfully');
+                } else {
+                    console.error('Failed to send webhook:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
